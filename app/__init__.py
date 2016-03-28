@@ -10,15 +10,17 @@ app = Flask(__name__)
 app.config.from_object('config')
 manager = Manager(app)
 
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-manager.add_command('db', MigrateCommand)
-
 assets = Environment(app);
+assets.cache = False
+assets.manifest = "file:assets_manifest"
 css = Bundle('scss/materialize.scss', filters='pyscss', output='css/all.css')
 assets.register('all_css', css)
 js = Bundle('js/*', filters='jsmin', output='js/all.js')
 assets.register('all_js', js)
+
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+manager.add_command('db', MigrateCommand)
 
 if __name__ == "__main__":
     manager.run()

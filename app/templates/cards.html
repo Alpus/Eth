@@ -1,7 +1,7 @@
 {% extends "head.html" %}
 
 {% block ad %}
-{% for card in ad %}
+{% for card in cards_ad %}
 <div  id="{{ card.tab }}-All" class="col s12">
   <div class="card hoverable">
     <div class="card-content">
@@ -27,7 +27,7 @@
 {% endblock %}
 
 {% block new %}
-{% for card in new %}
+{% for card in cards_new %}
 <div  id="{{ card.tab }}-All" class="col s12">
   <div class="card hoverable">
     <div class="card-content">
@@ -53,7 +53,7 @@
 {% endblock %}
 
 {% block all %}
-{% for card in all %}
+{% for card in cards_all %}
 <div  id="{{ card.tab }}-All" class="col s12">
   <div class="card hoverable">
     <div class="card-content">

@@ -9,51 +9,100 @@
       rel="stylesheet">
   </head>
   <body>
-    <nav>
-      <div class="nav-wrapper blue-grey lighten-4">
-        <a href="#" class="brand-logo center blue-grey-text left">
-          <i class="material-icons left">games</i>
-          EtherDice
-        </a>
-        <ul class="right">
-          <li>
-            <a class="lighten-3 blue-grey-text" href="#!">
-              Add Game
-              <i class="material-icons right">add</i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <div class="container">
-      <div class="row"></div>
-      <div class="row">
-        <div class="col s10 offset-s1">
-          <ul class="tabs z-depth-1">
-            <li class="tab col s3"><a href="#Ad">Ad</a></li>
-            <li class="tab col s3"><a href="#New">New</a></li>
-            <li class="tab col s3"><a href="#All">All</a></li>
+    <header>
+      <nav>
+        <div class="nav-wrapper blue-grey lighten-4">
+          <a href="#" class="brand-logo center blue-grey-text left">
+            <i class="material-icons left">games</i>
+            EtherDice
+          </a>
+          <ul class="right">
+            <li>
+              <a class="modal-trigger lighten-3 blue-grey-text" href="#add_game">
+                Add Game
+                <i class="material-icons right">add</i>
+              </a>
+            </li>
           </ul>
         </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="row"></div>
+        <div class="row">
+          <div class="col s10 offset-s1">
+            <ul class="tabs z-depth-1">
+              <li class="tab col s3"><a href="#Ad">Ad</a></li>
+              <li class="tab col s3"><a href="#New">New</a></li>
+              <li class="tab col s3"><a href="#All">All</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div id="Ad" class="col s12">
+            {% block ad %}
+            {% endblock %}
+          </div>
+          <div id="New" class="col s12">
+            {% block new %}
+            {% endblock %}
+          </div>
+          <div id="All" class="col s12">
+            {% block all %}
+            {% endblock %}
+          </div>
+        </div>
+
       </div>
 
-      <div class="row">
-        <div id="Ad" class="col s12">
-          {% block ad %}
-          {% endblock %}
+      <div id="add_game" class="modal">
+        <div class="modal-content">
+          <h5>Add your game:</h5>
+          <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s6">
+                  <input id="title" type="text" class="validate">
+                  <label for="title">Title</label>
+                </div>
+                <div class="input-field col s6">
+                  <input id="email" type="email" name="cemail" class="validate">
+                  <label for="email">Email</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input value="http://" id="url" name="curl" type="url" class="validate">
+                  <label for="url" data-error="http://example.com">URL</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <textarea id="desc" class="materialize-textarea validate" type="text"></textarea>
+                  <label for="desc">Description</label>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-        <div id="New" class="col s12">
-          {% block new %}
-          {% endblock %}
-        </div>
-        <div id="All" class="col s12">
-          {% block all %}
-          {% endblock %}
+        <div class="modal-footer">
+          <h6 class="center">Only Ethereum games are acceptable. Your game will be added after check by admistrators.</h6>
+          <a href="#!" class=" modal-action modal-close waves-effect btn-flat">Agree</a>
         </div>
       </div>
+    </main>
 
-    </div>
+    <footer class="page-footer">
+      <div class="footer-copyright">
+        <div class="container">
+        © 2016 - Alexander Pushin
+        <a class="grey-text text-lighten-4 right" href="mailto:youremailaddress">work@apushin.com</a>
+        </div>
+      </div>
+    </footer>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     {% assets "all_js" %}
