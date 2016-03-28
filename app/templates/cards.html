@@ -1,0 +1,79 @@
+{% extends "head.html" %}
+
+{% block ad %}
+{% for card in ad %}
+<div  id="{{ card.tab }}-All" class="col s12">
+  <div class="card hoverable">
+    <div class="card-content">
+      <span class="card-title grey-text text-darken-4">
+      {{ card.title }}
+      </span>
+      <span class="right fb-like" data-href="{{ card.link }}" data-layout="button_count" data-action="recommend" data-show-faces="true" data-share="false"></span>
+      <p>
+      {{ card.desc }}
+      </p>
+    </div>
+
+    <div class="card-action center">
+      <a href="{{ card.link }}" target="_blank" class="waves-effect waves-light btn blue-grey lighten-3">
+      <i class="material-icons left">play_arrow
+      </i>Play</a>
+    </div>
+  </div>
+</div>
+{% else %}
+  
+{% endfor %}
+{% endblock %}
+
+{% block new %}
+{% for card in new %}
+<div  id="{{ card.tab }}-All" class="col s12">
+  <div class="card hoverable">
+    <div class="card-content">
+      <span class="card-title grey-text text-darken-4">
+      {{ card.title }}
+      </span>
+      <span class="right fb-like" data-href="{{ card.link }}" data-layout="button_count" data-action="recommend" data-show-faces="true" data-share="false"></span>
+      <p>
+      {{ card.desc }}
+      </p>
+    </div>
+
+    <div class="card-action center">
+      <a href="{{ card.link }}" target="_blank" class="waves-effect waves-light btn blue-grey lighten-3">
+      <i class="material-icons left">play_arrow
+      </i>Play</a>
+    </div>
+  </div>
+</div>
+{% else %}
+  
+{% endfor %}
+{% endblock %}
+
+{% block all %}
+{% for card in all %}
+<div  id="{{ card.tab }}-All" class="col s12">
+  <div class="card hoverable">
+    <div class="card-content">
+      <span class="card-title grey-text text-darken-4">
+      {{ card.title }}
+      </span>
+      <span class="right fb-like" data-href="{{ card.link }}" data-layout="button_count" data-action="recommend" data-show-faces="true" data-share="false"></span>
+      <p>
+      {{ card.desc }}
+      </p>
+    </div>
+
+    <div class="card-action center">
+      <a href="{{ card.link }}" target="_blank" class="waves-effect waves-light btn blue-grey lighten-3">
+      <i class="material-icons left">play_arrow
+      </i>Play</a>
+    </div>
+  </div>
+</div>
+{% else %}
+  
+{% endfor %}
+{% endblock %}
