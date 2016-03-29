@@ -18,7 +18,7 @@
           </a>
           <ul class="right">
             <li>
-              <a class="modal-trigger lighten-3 blue-grey-text" href="#add_game">
+              <a class="modal-trigger lighten-3 blue-grey-text" href="#add_game_modal">
                 Add Game
                 <i class="material-icons right">add</i>
               </a>
@@ -58,39 +58,50 @@
 
       </div>
 
-      <div id="add_game" class="modal">
+      <div id="add_game_modal" class="modal">
         <div class="modal-content">
-          <h5>Add your game:</h5>
+          <h5 blue-grey lighten-4>Add your game:</h5>
           <div class="row">
-            <form class="col s12">
+            <form class="col s12" id="add_game" name="add_game" method="POST" action="add_game">
+              {{ add_game.csrf_token }}
               <div class="row">
                 <div class="input-field col s6">
-                  <input id="title" type="text" class="validate">
-                  <label for="title">Title</label>
+                  {{ add_game.title.label }}
+                  {{ add_game.title( **{'class': 'validate', 'required': ''} ) }}
                 </div>
                 <div class="input-field col s6">
-                  <input id="email" type="email" name="cemail" class="validate">
-                  <label for="email">Email</label>
+                  {{ add_game.mail.label }}
+                  {{ add_game.mail( **{'class': 'validate', 'required': ''} ) }}
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s12">
-                  <input value="http://" id="url" name="curl" type="url" class="validate">
-                  <label for="url" data-error="http://example.com">URL</label>
+                  {{ add_game.desc.label }}
+                  {{ add_game.desc( **{'class': 'validate'} ) }}
                 </div>
               </div>
               <div class="row">
-                <div class="input-field col s12">
-                  <textarea id="desc" class="materialize-textarea validate" type="text"></textarea>
-                  <label for="desc">Description</label>
+                <div class="input-field col s6">
+                  {{ add_game.link.label }}
+                  {{ add_game.link( **{'class': 'validate', 'value': 'http://', 'required': '', 'data-error': 'http://example.com'} ) }}
                 </div>
+                <div class="col right">
+                  {# add_game.capt() #}
+                </div>
+              </div>
+              <div class="row">
+                <h6 class="center">Only Ethereum games are acceptable. Your game will be added after check by admistrators.</h6>
+              </div>
+              <div class="row">
+                <span id="bad_forms" class="hide red-text">Incorrect data or your game is already added.</span>
+                <span id="bad_net" class="hide red-text">Not submitted. Please, check your input.</span>
+                <button value="submit" id="add_game_submit" type="submit" class="waves-effect btn-flat right blue-grey lighten-4">Submit</button>
               </div>
             </form>
           </div>
         </div>
-        <div class="modal-footer">
-          <h6 class="center">Only Ethereum games are acceptable. Your game will be added after check by admistrators.</h6>
-          <a href="#!" class=" modal-action modal-close waves-effect btn-flat">Agree</a>
+        <div class="modal-footer hide">
+          <a id="add_game_close" class="modal-action modal-close"></a>
         </div>
       </div>
     </main>
@@ -99,15 +110,17 @@
       <div class="footer-copyright">
         <div class="container">
         © 2016 - Alexander Pushin
-        <a class="grey-text text-lighten-4 right" href="mailto:youremailaddress">work@apushin.com</a>
+        <a class="grey-text text-lighten-4 right" href="mailto:youremailaddress">ethereum@apushin.com</a>
         </div>
       </div>
     </footer>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     {% assets "all_js" %}
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
+
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];

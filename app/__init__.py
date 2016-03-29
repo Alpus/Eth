@@ -5,8 +5,13 @@ from flask.ext.assets import Environment, Bundle
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
+from flask_wtf.csrf import CsrfProtect
+import wtforms_json
 
 app = Flask(__name__)
+CsrfProtect(app)
+wtforms_json.init()
+
 app.config.from_object('config')
 manager = Manager(app)
 
